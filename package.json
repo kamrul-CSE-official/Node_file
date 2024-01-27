@@ -1,0 +1,35 @@
+{
+  "name": "food-baba-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "prepare": "husky install",
+    "prettier-fix": "npx prettier src/**/*.{js,jsx,ts,tsx,json} --write",
+    "prettier-check": "npx prettier src/**/*.{js,jsx,ts,tsx,json} --check",
+    "lint-check": "eslint src/**/*.{js,jsx,ts,tsx,json} --ext tsx --ext js",
+    "lint-fix": "eslint src/**/*.{js,jsx,ts,tsx,json} --fix",
+    "test-all": "npm run prettier-fix && npm run prettier-check && npm run lint-check && npm run lint-fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.18.2",
+    "firebase": "^10.7.2",
+    "jsonwebtoken": "^9.0.2",
+    "lint-staged": "^15.2.0",
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "husky": "^8.0.0",
+    "nodemon": "^3.0.3",
+    "prettier": "3.2.4"
+  }
+}
