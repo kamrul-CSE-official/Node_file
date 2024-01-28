@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "prepare": "husky install",
     "prettier-fix": "npx prettier src/**/*.{js,jsx,ts,tsx,json} --write",
