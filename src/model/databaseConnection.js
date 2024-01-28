@@ -11,7 +11,7 @@ async function databaseConnection(uri = "mongodb://127.0.0.1:27017/PC_Build") {
 
   try {
     await client.connect();
-    console.log("Connected to the database");
+    console.log("Connected to the database 🎁".blue);
 
     const db = client.db("PC_Build");
 
@@ -26,7 +26,7 @@ async function databaseConnection(uri = "mongodb://127.0.0.1:27017/PC_Build") {
       orders: ordersCollection,
     };
   } catch (error) {
-    console.error("Error connecting to the database:", error);
+    console.error("Error connecting to the database:".red, error);
     throw error;
   }
 }

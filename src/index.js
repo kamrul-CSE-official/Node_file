@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
+const colors = require("colors");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 
@@ -18,9 +19,9 @@ app.use(routes);
 (async () => {
   try {
     app.listen(port, () => {
-      console.log(`Server is running on port: ${port}`);
+      console.log(`Server is running on port: ${port} 🏃`.yellow);
     });
   } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
+    console.error("Error connecting to MongoDB:".red, error);
   }
 })();
