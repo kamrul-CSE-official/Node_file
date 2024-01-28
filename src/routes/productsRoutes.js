@@ -1,24 +1,36 @@
+//routes/productsRoutes.js
 const express = require("express");
-const databaseConnection = require("../model/databaseConnection");
+const productsServices = require("../services/productsServices");
+
 const router = express.Router();
-const database = databaseConnection();
+
+const handleRouteError = (res, error, routeName) => {
+  console.error(`Error handling ${routeName} route:`, error);
+  res.status(500).json({ error: "Internal Server Error" });
+};
 
 router.get("/", async (req, res) => {
+  console.log("all products");
   try {
     const { page, size } = req.query;
-
-    const query = (await database).products.find();
-
-    if (page && size) {
-      query.skip(parseInt(page) * parseInt(size)).limit(parseInt(size));
-    }
-
-    const result = await query.toArray();
-
+    const database = req.app.locals.db;
+    const result = await productsServices.getProducts(database, page, size);
     res.status(200).json({ status: 200, data: result });
   } catch (error) {
-    console.error("Error handling products route:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleRouteError(res, error, "products");
+  }
+});
+
+router.get("/top", async (req, res) => {
+  console.log("Top");
+
+  try {
+    const { page, size } = req.query;
+    const database = req.app.locals.db;
+    const result = await productsServices.getTopProducts(database, page, size);
+    res.status(200).json({ status: 200, data: result });
+  } catch (error) {
+    handleRouteError(res, error, "top products");
   }
 });
 

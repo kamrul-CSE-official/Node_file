@@ -3,6 +3,10 @@ const productsRoutes = require("./productsRoutes");
 
 const router = express.Router();
 
+// Middleware usage
+router.use("/products", productsRoutes);
+
+// Root route
 router.get("/", async (req, res) => {
   try {
     res.status(200).send({
@@ -14,7 +18,5 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
-router.use("/products", productsRoutes);
 
 module.exports = router;

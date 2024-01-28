@@ -1,6 +1,12 @@
-const { ServerApiVersion, MongoClient } = require("mongodb");
+// model/databaseConnection.js
 
-async function databaseConnection(uri = "mongodb://127.0.0.1:27017/PC_Build") {
+const { ServerApiVersion, MongoClient } = require("mongodb");
+const dotenv = require("dotenv");
+dotenv.config();
+
+async function databaseConnection(
+  uri = `mongodb+srv://${process.env.DBNAME}:${process.env.DBPASS}@cluster0.nohszvq.mongodb.net/?retryWrites=true&w=majority`
+) {
   const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -13,7 +19,7 @@ async function databaseConnection(uri = "mongodb://127.0.0.1:27017/PC_Build") {
     await client.connect();
     console.log("Connected to the database 🎁".blue);
 
-    const db = client.db("PC_Build");
+    const db = client.db("foodBaba");
 
     // collections
     const productsCollection = db.collection("products");
@@ -31,4 +37,6 @@ async function databaseConnection(uri = "mongodb://127.0.0.1:27017/PC_Build") {
   }
 }
 
-module.exports = databaseConnection;
+module.exports = () => {
+  return databaseConnection();
+};
