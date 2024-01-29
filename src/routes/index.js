@@ -1,12 +1,14 @@
 const express = require("express");
 const productsRoutes = require("./productsRoutes");
+const ordersRoutes = require("./ordersRoutes");
 
 const router = express.Router();
 
 // Middleware usage
 router.use("/products", productsRoutes);
+router.use("/orders",ordersRoutes)
 
-// Root route
+// test route
 router.get("/", async (req, res) => {
   try {
     res.status(200).send({
